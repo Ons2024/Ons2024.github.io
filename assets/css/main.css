@@ -8,10 +8,7 @@
 */
 
 video {
-    
-    display: flex;
-    justify-content: center;  /* Centre horizontalement */
-    align-items: center;  /* Make sure it’s not hidden */
+    display: block; /* Make sure it’s not hidden */
     width: 100%; /* Ensure it stretches to fit its container */
     max-width: 100%; /* Ensure it doesn’t overflow its container */
     height: auto; /* Maintain the aspect ratio */
