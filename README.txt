@@ -5,16 +5,6 @@ This site showcases my projects, skills, and background as a developer/designer 
 
 🖥️ Live Site: https://ons2024.github.io
 
-## 🔧 Built With
-- HTML5
-- CSS3
-- (Add JS, frameworks, or tools if you use any)
-
-## 📁 Contents
-- Home
-- About Me
-- Projects
-- Contact
 
 ## 📬 Contact
 Feel free to reach out ! 
