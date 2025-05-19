@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ons' Portfolio - Knee Segmentation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Ons' Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">My Projects</a></li>
+                            <li><a href="generic.html">About Me</a></li>
+							<li class="active"><a href="spinal_segmentation.html">Knee Segmentation</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/wali-ons-89015935b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Ons2024" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					
+					</nav>
+
+				<!-- Main -->
+                 <div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h3>Knee Segmentation Model Development Using Swin-Unet </h3>
+									
+								</header>
+
+								<!-- Text stuff -->
+									<h2>📌 Overview</h2>
+        <p>
+            This project implements a <strong>Swin UNet</strong> model for <strong>automatic segmentation of the knee joint</strong> 
+            from MRI scans, followed by a <strong>3D reconstruction of anatomical structures</strong>. Swin UNet leverages the power 
+            of transformer-based architectures for improved contextual understanding in medical image segmentation.
+        </p>
+        <hr />
+
+        <!-- Architecture -->
+        <h2>🏗️ Swin UNet Architecture</h2>
+        <p>
+            Swin UNet is based on the Swin Transformer backbone, which applies shifted window attention to efficiently 
+            model long-range dependencies in the image. It maintains a hierarchical representation and integrates 
+            it into a UNet-like encoder-decoder design.
+        </p>
+
+        <!-- Architecture Image -->
+        <div style="text-align:center;">
+            <img src="images/Swin Unet.png" alt="Swin UNet Architecture Diagram" style="max-width:100%; height:auto; border:1px solid #ccc; margin-top:20px;" />
+            <p style="font-size: 0.9em; color: #666;">Figure: Swin UNet Architecture</p>
+        </div>
+        <hr />
+
+        <!-- 3D Video -->
+        <h2>🧠 3D Reconstruction Results</h2>
+        <p>
+			After applying Swin UNet for automatic segmentation of the knee from MRI scans, 
+			we performed a 3D reconstruction of the segmented anatomical parts. The video below 
+			showcases the <strong>segmented femur and tibia</strong> rendered in 3D for better visual analysis.
+		</p>
+
+		<video width="100%" height="auto" controls poster="images/knee.png" style="margin-top:15px; border:1px solid #ccc;">
+			<source src="assets/videos/knee.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p style="font-size: 0.9em; color: #666;">Video: 3D Reconstruction of the Segmented Knee</p>
+        <hr />
+
+        <!-- Tools -->
+        <h2>🔧 Tools & Technologies</h2>
+        <ul>
+            <li>Python</li>
+            <li>PyTorch</li>
+            <li>MONAI (Medical Open Network for AI)</li>
+            <li>VTK & Matplotlib for 3D Visualization</li>
+        </ul>
+        <hr />
+
+        <!-- Conclusion -->
+        <h2>📝 Conclusion</h2>
+        <p>
+            This project demonstrates the application of transformer-based architectures in medical imaging.
+            Swin UNet offers powerful performance for anatomical segmentation, while 3D reconstruction 
+            allows for more intuitive interpretation of medical scans.
+        </p>
+    </section>
+</div>
+                                
+						
+					
+	
+				<!-- Footer -->
+				<footer id="footer">
+						
+					<section class="split contact">
+						<section class="alt">
+							<h3>Address</h3>
+							<p>Lille, France<br />
+							</p>
+						</section>
+						<section>
+							<h3>Phone</h3>
+							<p><a href="#">(33) 6 75 74 78 92</a></p>
+						</section>
+						<section>
+							<h3>Email</h3>
+							<p><a href="#">onswali28@gmail.com</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/wali-ons-89015935b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/Ons2024" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</section>
+					</section>
+				</footer>
+	
+				<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>&copy; My Portfolio</li></ul>
+				</div>
+	
+			</div>
+	
+			<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+
+	</body>
+</html>		

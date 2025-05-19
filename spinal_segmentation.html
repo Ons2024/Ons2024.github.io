@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ons' Portfolio - Spinal Cord Segmentation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Ons' Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">My Projects</a></li>
+                            <li><a href="generic.html">About Me</a></li>
+							<li class="active"><a href="spinal_segmentation.html">Spinal Cord Segmentation</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/wali-ons-89015935b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Ons2024" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					
+					</nav>
+
+				<!-- Main -->
+                 <div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h3>Spinal Segmentation Model Development Using U-Net</h3>
+									
+								</header>
+
+								<!-- Text stuff -->
+									<h2>📌 Overview</h2>
+									<p>This project implements a <b>U-Net-based convolutional neural network</b> for <b>automatic segmentation of 
+										spinal structures from MRI scans</b>. U-Net, originally designed for biomedical image segmentation, 
+										is particularly well-suited for this task due to its ability to capture both spatial context and 
+										fine-grained details.</p>
+									<hr />
+
+									<!-- Skills Section -->
+									<section class="post">
+										<h2>🏗️ U-Net Architecture</h2>
+										<p>The architecture consists of three main components:</p>
+										<!-- Inserted Image Here -->
+<img src="images/1.png" alt="U-Net Architecture Diagram" style="max-width:100%; height:auto; border:1px solid #ccc; margin-top:20px;" />
+                                        <h1>	</h1>
+										<h3>Encoder (Contracting Path)</h3>
+										<p>Extracts hierarchical features while progressively reducing spatial resolution using:</p>
+										<ul>
+											<li>Two 3x3 convolutions with ReLU activation</li>
+											<li>2x2 max pooling (stride 2) for downsampling</li>
+											<li>Five encoder levels in total</li>
+										</ul>
+				
+										
+									</section>
+
+									<h3>Bridge (Bottleneck)</h3>
+        <ul>
+            <li>Connects encoder and decoder paths</li>
+            <li>Captures deep, abstract representations of features</li>
+        </ul>
+
+        <h3> Decoder (Expanding Path)</h3>
+        <ul>
+            <li>Mirrors the encoder structure (five levels)</li>
+            <li>2x2 up-convolution (transposed convolution) layers for upsampling</li>
+            <li>Skip connections concatenate encoder feature maps with upsampled features</li>
+            <li>Two 3x3 convolution layers with <strong>ReLU</strong> at each level</li>
+            <li>Final output layer with <strong>Softmax</strong> activation to generate segmentation masks</li>
+        </ul>
+        <hr />
+
+        <!-- Technical Details -->
+        <h2>⚙️ Technical Implementation</h2>
+        <ul>
+            <li><strong>Input:</strong> Grayscale MRI images (1 channel)</li>
+            <li><strong>Output:</strong> Binary mask (intervertebral disc vs. background)</li>
+            <li><strong>Padding:</strong> "Same" padding to preserve spatial dimensions</li>
+            <li><strong>ReLU Activation:</strong> <code>ReLU(x) = max(0, x)</code></li>
+            <li><strong>Upsampling Rule:</strong> <code>Output Size = Input Size × Stride</code></li>
+            <li><strong>Pooling Rule:</strong> <code>Output = (Input - Pool Size) / Stride + 1</code></li>
+        </ul>
+        <hr />
+
+        <!-- Training Info -->
+        <h2>🧪 Training & Results</h2>
+        <ul>
+            <li><strong>Epochs:</strong> 100</li>
+            <li><strong>Batch Size:</strong> 8</li>
+            <li><strong>Total Training Time:</strong> 35 hours</li>
+            <li><strong>Output Format:</strong> H5 model file</li>
+        </ul>
+
+        <p>
+            After training, the model was evaluated on unseen MRI scans. Predicted masks 
+            showed strong alignment with ground truth labels, demonstrating effective generalization.
+        </p>
+
+        <p><strong>Visualization:</strong> Below is an example of the predicted segmentation masks (not shown here — insert image if available).</p>
+        <hr />
+
+        <!-- Tools -->
+        <h2>🔧 Tools & Libraries</h2>
+        <ul>
+            <li>Python</li>
+            <li>TensorFlow / Keras</li>
+            <li>NumPy</li>
+            <li>Matplotlib (for result visualization)</li>
+        </ul>
+        <hr />
+
+        <!-- Preformatted Code -->
+        <h2>💻 U-Net Model Code (Simplified)</h2>
+        <pre><code>from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D, concatenate
+from tensorflow.keras.models import Model
+
+inputs = Input((128, 128, 1))
+
+# Encoder
+c1 = Conv2D(64, (3, 3), activation='relu', padding='same')(inputs)
+c1 = Conv2D(64, (3, 3), activation='relu', padding='same')(c1)
+p1 = MaxPooling2D((2, 2))(c1)
+
+# Bottleneck
+c2 = Conv2D(128, (3, 3), activation='relu', padding='same')(p1)
+c2 = Conv2D(128, (3, 3), activation='relu', padding='same')(c2)
+
+# Decoder
+u1 = UpSampling2D((2, 2))(c2)
+m1 = concatenate([u1, c1])
+c3 = Conv2D(64, (3, 3), activation='relu', padding='same')(m1)
+c3 = Conv2D(64, (3, 3), activation='relu', padding='same')(c3)
+
+outputs = Conv2D(1, (1, 1), activation='sigmoid')(c3)
+model = Model(inputs, outputs)
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])</code></pre>
+        <hr />
+
+        <!-- Conclusion -->
+        <h2>📝 Conclusion</h2>
+        <p>
+            This spinal segmentation project highlights the power of U-Net for medical image analysis. 
+            The symmetrical architecture, use of skip connections, and strong spatial feature preservation 
+            enable precise segmentation of spinal discs from complex MRI data.
+        </p>
+    </section>
+                                    
+				            
+
+
+
+                            
+                </section>
+                </div>  
+                                
+						
+					
+	
+				<!-- Footer -->
+				<footer id="footer">
+						
+					<section class="split contact">
+						<section class="alt">
+							<h3>Address</h3>
+							<p>Lille, France<br />
+							</p>
+						</section>
+						<section>
+							<h3>Phone</h3>
+							<p><a href="#">(33) 6 75 74 78 92</a></p>
+						</section>
+						<section>
+							<h3>Email</h3>
+							<p><a href="#">onswali28@gmail.com</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/wali-ons-89015935b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://github.com/Ons2024" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</section>
+					</section>
+				</footer>
+	
+				<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>&copy; My Portfolio</li></ul>
+				</div>
+	
+			</div>
+	
+			<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+
+	</body>
+</html>		
